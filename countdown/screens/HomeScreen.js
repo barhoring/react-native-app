@@ -56,7 +56,7 @@ export default class HomeScreen extends React.Component {
 
             <Text style={styles.getStartedText}>
               You are here: {"\n"}
-              <Text style={styles.developmentModeText}>
+              <Text style={[styles.developmentModeText, styles.FilePath]}>
                 /screens/HomeScreen.js
               </Text>
             </Text>
@@ -71,9 +71,19 @@ export default class HomeScreen extends React.Component {
                 Help, it didn’t automatically reload!
               </Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this._handleHelpPress}
+              style={styles.FilePath}
+            >
+              <Text>
+                Let's open
+                <Text style={styles.container}> a browser! </Text>
+                <Text style={styles.helpLinkText}>puf!</Text>
+              </Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
-
+        {/* 
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>
             This is a tab bar. You can edit it in:
@@ -86,7 +96,7 @@ export default class HomeScreen extends React.Component {
               navigation/MainTabNavigator.js
             </MonoText>
           </View>
-        </View>
+        </View> */}
       </View>
     );
   }
@@ -100,10 +110,20 @@ export default class HomeScreen extends React.Component {
       );
 
       return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use
-          useful development tools. {learnMoreButton}
-        </Text>
+        <View>
+          <View>
+            <View style={styles.developmentModeText}>
+              <View>
+                <Text>
+                  A message about how slow your app may be due to
+                  <Text style={styles.FilePath}> 👻developer mode👻</Text>
+                  but you can mitigate your life with useful development tools.
+                  {learnMoreButton}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
       );
     } else {
       return (
@@ -219,8 +239,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#2e78b7"
   },
-  helpLinkText: {
+  FilePath: {
     fontSize: 14,
-    color: "#2e78b7"
+    fontStyle: "italic",
+    color: "grey"
   }
 });
